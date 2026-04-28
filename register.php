@@ -49,10 +49,10 @@
                                 $stmt->execute([$fullname, $email, $phone, $hashedPassword, $role]);
 
                                 echo '
-                               <div class="success-msg">
-                               Registration successful!
-                              <a href="login.php">Login here →</a>
-                             </div>';
+                                <div class="success-msg">
+                                Registration successful!
+                                <a href="login.php">Login here →</a>
+                               </div>';
                             }
                         } catch (PDOException $e) {
                             echo '<p class="error">Something went wrong</p>';
