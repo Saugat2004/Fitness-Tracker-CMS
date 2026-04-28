@@ -250,6 +250,17 @@ body {
   font-size: 13px;
 }
 
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+}
+
 .action-btn {
   flex: 1;
   text-align: center;

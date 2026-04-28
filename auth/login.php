@@ -41,7 +41,7 @@
                                 $_SESSION['user_id'] = $user['id'];
                                 $_SESSION['user_name'] = $user['fullname'];
                                 $_SESSION['user_role'] = $user['role'] ?? 'user';
-                                header('Location: index.php');
+                                header('Location: /fitness-tracker/user/dashboard.php');
                                 exit;
                             } else {
                                 echo '<p class="error">Invalid email or password</p>';

@@ -37,7 +37,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </span>
 
 
-            <a href="../logout.php" class="logout-btn">Logout</a>
+            <a href="/fitness-tracker/auth/logout.php" class="logout-btn">Logout</a>
 
         </div>
 
