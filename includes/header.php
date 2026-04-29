@@ -54,6 +54,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
             <span class="user">
                 👤 <?= $_SESSION['user_name'] ?? 'User' ?>
+                <a href="/fitness-tracker/user/profile.php" class="nav-link">(Profile)</a>
             </span>
 
 
