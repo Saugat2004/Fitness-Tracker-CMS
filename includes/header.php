@@ -15,21 +15,41 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <body>
 
-
     <div class="navbar">
 
 
-        <a href="../user/dashboard.php" class="logo">
+        <a href="/fitness-tracker/index.php" class="logo">
             Fitness Tracker
         </a>
-
 
         <div class="nav-right">
 
 
-            <a href="../user/dashboard.php" class="nav-link">Dashboard</a>
-            <a href="../user/addexercise.php" class="nav-link">Add</a>
-            <a href="../user/history.php" class="nav-link">History</a>
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+
+                <a href="/fitness-tracker/admin/dashboard.php" class="nav-link">
+                    Dashboard
+                </a>
+
+                <a href="/fitness-tracker/admin/user_logs.php" class="nav-link">
+                    User Logs
+                </a>
+
+            <?php else: ?>
+
+                <a href="/fitness-tracker/user/dashboard.php" class="nav-link">
+                    Dashboard
+                </a>
+
+                <a href="/fitness-tracker/user/addexercise.php" class="nav-link">
+                    Add
+                </a>
+
+                <a href="/fitness-tracker/user/history.php" class="nav-link">
+                    History
+                </a>
+
+            <?php endif; ?>
 
 
             <span class="user">
@@ -37,10 +57,14 @@ if (session_status() === PHP_SESSION_NONE) {
             </span>
 
 
-            <a href="/fitness-tracker/auth/logout.php" class="logout-btn">Logout</a>
+            <a href="/fitness-tracker/auth/logout.php" class="logout-btn">
+                Logout
+            </a>
 
         </div>
 
     </div>
 
-    </div>
+</body>
+
+</html>

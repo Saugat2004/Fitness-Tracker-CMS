@@ -38,11 +38,20 @@
                             $user = $stmt->fetch();
 
                             if ($user && password_verify($password, $user['password'])) {
+
                                 $_SESSION['user_id'] = $user['id'];
                                 $_SESSION['user_name'] = $user['fullname'];
                                 $_SESSION['user_role'] = $user['role'] ?? 'user';
-                                header('Location: /fitness-tracker/user/dashboard.php');
+
+
+                                if ($_SESSION['user_role'] === 'admin') {
+                                    header('Location: /fitness-tracker/admin/dashboard.php');
+                                } else {
+                                    header('Location: /fitness-tracker/user/dashboard.php');
+                                }
+
                                 exit;
+
                             } else {
                                 echo '<p class="error">Invalid email or password</p>';
                             }

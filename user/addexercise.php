@@ -1,73 +1,78 @@
 <?php
 require '../includes/config.php';
 require '../includes/auth.php';
-
 include '../includes/header.php';
 
 $user_id = $_SESSION['user_id'];
 
 $message = "";
+$messageType = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $name = $_POST['exercise_name'];
-    $duration = $_POST['duration'];
-    $sets = $_POST['sets'];
-    $calories = $_POST['calories'];
+    $name = trim($_POST['exercise_name']);
+    $duration = (int) $_POST['duration'];
+    $sets = (int) $_POST['sets'];
+    $calories = (int) $_POST['calories'];
 
-    if ($name && $duration && $sets && $calories) {
-
+    if (empty($name) || $duration <= 0 || $sets <= 0 || $calories <= 0) {
+        $message = "Please enter valid values!";
+        $messageType = "error";
+    } else {
         $stmt = $pdo->prepare("
             INSERT INTO exercises (user_id, exercise_name, duration, sets, calories)
             VALUES (?, ?, ?, ?, ?)
         ");
-
         $stmt->execute([$user_id, $name, $duration, $sets, $calories]);
 
         $message = "Exercise added successfully!";
-    } else {
-        $message = "Please fill all fields!";
+        $messageType = "success";
     }
 }
 ?>
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<div class="container add-page">
+<div class="add-page">
 
-    <div class="form-box">
+    <div class="exercise-box">
 
-        <h2>Add Exercise 💪</h2>
+        <h2><i class="fa-solid fa-plus"></i> Add Exercise</h2>
 
         <?php if ($message): ?>
-            <p class="<?= strpos($message, 'success') !== false ? 'success-msg' : 'error' ?>">
+            <div class="<?= $messageType === 'success' ? 'success-msg' : 'error' ?>">
                 <?= $message ?>
-            </p>
+            </div>
         <?php endif; ?>
 
         <form method="POST">
 
-            <div class="input-group">
-                <input type="text" name="exercise_name" placeholder=" " required>
-                <label>Exercise Name</label>
+            <div class="card-input">
+                <label><i class="fa-solid fa-dumbbell"></i> Exercise Name</label>
+                <input type="text" name="exercise_name" required>
             </div>
 
-            <div class="input-group">
-                <input type="number" name="duration" placeholder=" " required>
-                <label>Duration</label>
+            <div class="card-input-row">
+                <div class="card-input">
+                    <label><i class="fa-regular fa-clock"></i> Duration</label>
+                    <input type="number" name="duration" min="1" required>
+                </div>
+
+                <div class="card-input">
+                    <label><i class="fa-solid fa-layer-group"></i> Sets</label>
+                    <input type="number" name="sets" min="1" required>
+                </div>
             </div>
 
-            <div class="input-group">
-                <input type="number" name="sets" placeholder=" " required>
-                <label>Sets</label>
+            <div class="card-input">
+                <label><i class="fa-solid fa-fire"></i> Calories</label>
+                <input type="number" name="calories" min="1" required>
             </div>
 
-            <div class="input-group">
-                <input type="number" name="calories" placeholder=" " required>
-                <label>Calories</label>
-            </div>
-
-            <button class="btn">Add Exercise</button>
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-plus"></i> Add Exercise
+            </button>
 
         </form>
 
