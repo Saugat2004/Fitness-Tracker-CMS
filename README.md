@@ -20,11 +20,17 @@ fitness-cms/
 │   ├── dashboard.php         ← User stats + summary
 │   ├── add_exercise.php     ← Add workout
 │   └── history.php          ← Workout history
-│
+│   └──profile.php            ← user profile
 └── admin/
     ├── dashboard.php        ← Admin overview
     ├── users.php            ← View all users
     └── user_logs.php        ← View user activities
 
+---
+ #Features
+- User authentication (login/register/logout)
+- Workout tracking system
+- Admin dashboard for user management
+- Clean and simple UI
 
     
