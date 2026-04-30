@@ -52,10 +52,31 @@ if (session_status() === PHP_SESSION_NONE) {
             <?php endif; ?>
 
 
-            <span class="user">
-                👤 <?= $_SESSION['user_name'] ?? 'User' ?>
-                <a href="/fitness-tracker/user/profile.php" class="nav-link">(Profile)</a>
-            </span>
+
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] !== 'admin'): ?>
+
+
+                <a href="/fitness-tracker/user/profile.php" class="user profile-link">
+
+                    <div class="nav-avatar">
+                        <?= strtoupper(substr($_SESSION['user_name'], 0, 1)) ?>
+                    </div>
+
+                    <span class="username">
+                        <?= $_SESSION['user_name'] ?? 'User' ?>
+                    </span>
+
+                </a>
+
+            <?php else: ?>
+
+
+                <span class="user">
+                    👤 <?= $_SESSION['user_name'] ?? 'Admin' ?>
+                </span>
+
+            <?php endif; ?>
+
 
 
             <a href="/fitness-tracker/auth/logout.php" class="logout-btn">
