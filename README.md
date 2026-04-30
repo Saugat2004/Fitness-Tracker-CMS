@@ -26,11 +26,17 @@ fitness-cms/
     ├── users.php            ← View all users
     └── user_logs.php        ← View user activities
 
----
- #Features
-- User authentication (login/register/logout)
-- Workout tracking system
-- Admin dashboard for user management
-- Clean and simple UI
+## Features
 
+🔐 User Authentication System
+-Secure login, registration, and logout functionality for users.
+
+🏋️ Workout Tracking System
+-Users can add, view, and manage their daily exercise/workout records.
+
+📊 Admin Dashboard
+-Admin panel to manage users and monitor system activity efficiently.
+
+🎨 Clean & Simple UI
+-Minimal, responsive, and user-friendly interface designed for easy navigation.
     
